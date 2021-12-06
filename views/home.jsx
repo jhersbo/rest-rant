@@ -6,6 +6,12 @@ function Home(){
         <Def>
             <main>
                 <h1>HOME</h1>
+                <div>
+                    <img src="/images/flat-vegetables.jpg" alt="Vegetable Image" />
+                    <div>
+                        Photo by Ella Olsson from <a href="https://www.pexels.com/photo/flat-lay-photography-of-vegetable-salad-on-plate-1640777/">Pexels</a>
+                    </div>
+                </div>
                 <a href="/places">
                     <button className='btn-primary'>Places Page</button>
                 </a>
