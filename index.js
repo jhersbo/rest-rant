@@ -10,7 +10,7 @@ app.use(express.static('public'))
 
 //Controllers and routes
 app.use('/places', require('./controllers/places'))
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}))//still need this? works both with and without?
 
 app.get('/', (req, res) =>{ 
     res.render('Home')

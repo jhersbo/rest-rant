@@ -1,5 +1,10 @@
 const router = require('express').Router()
 const places = require('../models/places')
+const bodyParser = require('body-parser')
+const { json } = require('body-parser')
+
+const jsonParser = bodyParser.json()
+const urlencodedParser = bodyParser.urlencoded({extended: false})
 
 router.get('/', (req, res) => {
     res.render('places/index', {places})
@@ -9,9 +14,20 @@ router.get('/new', (req, res)=>{
   res.render('places/new')
 })
 
-router.post('/', (req, res)=>{
-  console.log(req.body)
-  res.send('POST /places')
+router.post('/', urlencodedParser, (req, res)=>{
+  const obj = JSON.parse(JSON.stringify(req.body))
+  console.log(obj)
+  if (!req.body.pic){
+    req.body.pic = 'http://placekitten.com/400/400'
+  }
+  if (!req.body.city){
+    req.body.city = 'Anytown'
+  }
+  if (!req.body.state){
+    req.body.state = 'USA'
+  }
+  places.push(req.body)
+  res.redirect('/places')
 })
 
 router.get('/:id', (req, res)=>{
