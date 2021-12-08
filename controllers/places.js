@@ -15,8 +15,11 @@ router.get('/new', (req, res)=>{
 })
 
 router.post('/', urlencodedParser, (req, res)=>{
-  const obj = JSON.parse(JSON.stringify(req.body))
-  console.log(obj)
+  // const obj = JSON.parse(JSON.stringify(req.body))
+  // console.log(obj)
+  if (!req.body.key){
+    req.body.key = places.length + 1
+  }
   if (!req.body.pic){
     req.body.pic = 'http://placekitten.com/400/400'
   }
@@ -27,6 +30,7 @@ router.post('/', urlencodedParser, (req, res)=>{
     req.body.state = 'USA'
   }
   places.push(req.body)
+  console.log(req.body)
   res.redirect('/places')
 })
 

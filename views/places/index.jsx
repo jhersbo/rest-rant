@@ -1,5 +1,5 @@
 const React = require('react')
-const Def = require('/Users/jhers/FS-Extended/rest-rant/views/default')
+const Def = require('../default')
 
 function Index(data){
     let placesFormatted = data.places.map((place)=>{
