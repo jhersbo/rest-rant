@@ -54,7 +54,6 @@ main{
 #left, #right{
   width: 50%;
   height: auto;
-  /* align-self: center; */
   padding-top: 1rem;
 }
 
