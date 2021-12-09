@@ -6,6 +6,7 @@ h1{
 img{
   width: 50%;
   height: auto;
+  
 }
 
 nav {
@@ -38,8 +39,26 @@ body {
   text-align: center;
 }
 
-main {
+main{
   margin-right: 20px;
   margin-left: 20px;
   background-color: white;
+}
+
+.flex{
+  display: inline-flex;
+  justify-content: center;
+  align-content: center;
+}
+
+#left, #right{
+  width: 50%;
+  height: auto;
+  /* align-self: center; */
+  padding-top: 1rem;
+}
+
+footer{
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 }

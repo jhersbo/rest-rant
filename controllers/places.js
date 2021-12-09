@@ -17,9 +17,6 @@ router.get('/new', (req, res)=>{
 router.post('/', urlencodedParser, (req, res)=>{
   // const obj = JSON.parse(JSON.stringify(req.body))
   // console.log(obj)
-  if (!req.body.key){
-    req.body.key = places.length + 1
-  }
   if (!req.body.pic){
     req.body.pic = 'http://placekitten.com/400/400'
   }
@@ -35,7 +32,14 @@ router.post('/', urlencodedParser, (req, res)=>{
 })
 
 router.get('/:id', (req, res)=>{
-  res.send('Place index #')
+  let id = Number(req.params.id)
+  if (isNaN(id)){
+    res.render('error404')
+  }else if(!places[id]){
+    res.render('error404')
+  }else{
+    res.render('places/show', {place: places[id], id})
+  }
 })
 
 router.get('/:id/edit', (req, res)=>{
