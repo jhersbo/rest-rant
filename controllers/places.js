@@ -6,98 +6,41 @@ const { json } = require('body-parser')
 const jsonParser = bodyParser.json()
 const urlencodedParser = bodyParser.urlencoded({extended: false})
 
+
 router.get('/', (req, res) => {
-    res.render('places/index', {places})
+  res.send('GET /places stub')
 })
 
-router.get('/new', (req, res)=>{
+router.post('/', (req, res) => {
+  res.send('POST /places stub')
+})
+
+router.get('/new', (req, res) => {
   res.render('places/new')
 })
 
-router.post('/', urlencodedParser, (req, res)=>{
-  // const obj = JSON.parse(JSON.stringify(req.body))
-  // console.log(obj)
-  if (!req.body.pic){
-    req.body.pic = 'http://placekitten.com/400/400'
-  }
-  if (!req.body.city){
-    req.body.city = 'Anytown'
-  }
-  if (!req.body.state){
-    req.body.state = 'USA'
-  }
-  places.push(req.body)
-  console.log(req.body)
-  res.redirect('/places')
+router.get('/:id', (req, res) => {
+  res.send('GET /places/:id stub')
 })
 
 router.put('/:id', (req, res) => {
-  let id = Number(req.params.id)
-  if (isNaN(id)) {
-      res.render('error404')
-  }
-  else if (!places[id]) {
-      res.render('error404')
-  }
-  else{
-      if(!req.body.pic){
-          req.body.pic = 'http://placekitten.com/400/400'
-      }if(!req.body.city){
-          req.body.city = 'Anytown'
-      }if(!req.body.state){
-          req.body.state = 'USA'
-      }
-      places[id] = req.body//something weird is happening here
-      res.redirect(`/places/${id}`)
-  }
-  // res.send('PUT stub')
+  res.send('PUT /places/:id stub')
 })
 
-router.get('/:id', (req, res)=>{
-  let id = Number(req.params.id)
-  if (isNaN(id)){
-    res.render('error404')
-  }else if(!places[id]){
-    res.render('error404')
-  }else{
-    res.render('places/show', {place: places[id], id})
-  }
+router.delete('/:id', (req, res) => {
+  res.send('DELETE /places/:id stub')
 })
 
 router.get('/:id/edit', (req, res) => {
-  let id = Number(req.params.id)
-  if (isNaN(id)) {
-      res.render('error404')
-  }
-  else if (!places[id]) {
-      res.render('error404')
-  }
-  else {
-    res.render('places/edit', { place: places[id] })
-  }
+  res.send('GET edit form stub')
 })
 
-
-
-router.delete('/:id', (req, res)=>{
-  let id = Number(req.params.id)
-  if (isNaN(id)){
-    res.render('error404')
-  }else if (!places[id]){
-    res.render('error404')
-  }else{
-    places.splice(id, 1)
-    res.redirect('/places')
-  }
-  
+router.post('/:id/rant', (req, res) => {
+  res.send('GET /places/:id/rant stub')
 })
 
-router.post('/:id/rant', (req, res)=>{
-  res.send('Add rant to a place')
-})
-
-router.delete('/:id/rant/:rantId', (req, res)=>{
-  res.send('Delete a rant')
+router.delete('/:id/rant/:rantId', (req, res) => {
+    res.send('GET /places/:id/rant/:rantId stub')
 })
 
 module.exports = router
