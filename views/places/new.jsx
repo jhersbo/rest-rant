@@ -23,6 +23,16 @@ function new_form(){
                         <label htmlFor="state">Enter State</label>
                         <input type="text" id='state' name='state' className='form-control'/>
                     </div>
+                    <div className="form-group col-sm-4">
+                        <label htmlFor="founded">Founded Year</label>
+                        <input 
+                            type="number" 
+                            className="form-control" 
+                            id="founded" 
+                            name="founded" 
+                            value={new Date().getFullYear()}
+                        />
+                    </div>
                     <div className='form-group'>
                         <label htmlFor="cuisines">Cuisines</label>
                         <input type="text" name='cuisines' id='cuisines' required className='form-control'/>

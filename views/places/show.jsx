@@ -12,6 +12,9 @@ function show (data) {
                 <p>Not Rated</p>
                 <h2>Description</h2>
                 <p>Located in {data.place.city}, {data.place.state} and serving {data.place.cuisines}!</p>
+                <h3>
+                  {data.place.showEstablished()}
+                </h3>
               </div>
               <div id='right'>
                 <img src={data.place.pic} alt={data.place.name}/>
