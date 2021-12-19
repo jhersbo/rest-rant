@@ -1,7 +1,27 @@
 const React = require('react')
+const comment = require('../../models/comment')
 const Def = require('../default')
 
 function show (data) {
+  let comments = (
+    <h3 className='inactive'>
+      No comments yet!
+    </h3>
+  )
+  if (data.place.comments.length) {
+    comments = data.place.comments.map(c => {
+      return (
+        <div className="border">
+          <h2 className="rant">{c.rant ? 'Rant! 😡' : 'Rave! 😻'}</h2>
+          <h4>{c.content}</h4>
+          <h3>
+            <stong>- {c.author}</stong>
+          </h3>
+          <h4>Rating: {c.stars}</h4>
+        </div>
+      )
+    })
+  }
     return (
         <Def>
           <main className='container'>
@@ -32,7 +52,29 @@ function show (data) {
             </div>
             <footer>
               <h2>Comments</h2>
-              <p>No comments yet!</p>
+              <div>
+                <form action="POST" method='/:id/comment'>
+                    <div className='form-group'>
+                        <label htmlFor="author">Author</label>
+                        <input type='text' id='author' name='author' required className='form-control'/>
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="content">Content</label>
+                        <input type="textarea" id='content' name='content' className='form-control'/>
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="star-rating">Star Rating</label>
+                        <input type="number" step={0.5} id='star-rating' name='star-rating' className='form-control'/>
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="rant">Rant</label>
+                        <input type="checkbox" id='rant' name='rant' className='form-control'/>
+                    
+                    </div>
+                    <input type="submit" value='Add Rant!' className='btn btn-primary'/>
+                </form>
+              </div>
+              {comments}
             </footer>
           </main>
         </Def>
